@@ -6,8 +6,8 @@
 #
 # Give a Description for VSSDK Configuration
 #
-CONFIG_DESCRIPTION="SL1640 Yocto Poky for RDK"
-CONFIG_PRODUCT_NAME="sl1640_poky_rdk"
+CONFIG_DESCRIPTION="SL1640 USB Boot Yocto Poky for RDK (aarch64 userspace)"
+CONFIG_PRODUCT_NAME="sl1640_usb_poky_aarch64_rdk"
 CONFIG_BOARD_NAME="SL1640 RDK"
 CONFIG_PRODUCT_IP_LIST="noip"
 CONFIG_PRODUCT_IP_MAPPING_LIST=""
@@ -32,15 +32,15 @@ CONFIG_LINUX_OS=y
 # CONFIG_RUNTIME_LINUX_BASELINE_BUILDROOT is not set
 # CONFIG_RUNTIME_LINUX_BASELINE_BUILDROOT64 is not set
 # CONFIG_RUNTIME_RDK is not set
-# CONFIG_RUNTIME_OE64 is not set
-CONFIG_RUNTIME_OE=y
+CONFIG_RUNTIME_OE64=y
+# CONFIG_RUNTIME_OE is not set
 CONFIG_SYSROOT=y
 CONFIG_RUNTIME_FILESYSTEMS=""
 # end of Sysroot Filesystem Configuration
 
-CONFIG_IMAGE_EMMC=y
+# CONFIG_IMAGE_EMMC is not set
 # CONFIG_IMAGE_NAND is not set
-# CONFIG_IMAGE_USBBOOT is not set
+CONFIG_IMAGE_USBBOOT=y
 # CONFIG_PREBOOT_BOOTFLOW_NR is not set
 CONFIG_PREBOOT_BOOTFLOW_AB=y
 
@@ -50,7 +50,7 @@ CONFIG_PREBOOT_BOOTFLOW_AB=y
 CONFIG_IMAGE=y
 CONFIG_EMMC_PAGE_SIZE=512
 CONFIG_EMMC_BLOCK_SIZE=524288
-CONFIG_EMMC_TOTAL_SIZE=7433879552
+CONFIG_EMMC_TOTAL_SIZE=15552479232
 # end of Image Generation Configuration
 # end of Target Options
 
@@ -73,12 +73,12 @@ CONFIG_SYNA_SDK_OUT_ROOTFS="system"
 # Toolchain Configuration
 #
 CONFIG_TOOLCHAIN=y
-CONFIG_TOOLCHAIN_PATH="$(TOPDIR)/toolchain/aarch64/gcc-arm-aarch64-linux-gnu-8.3/bin:$(TOPDIR)/toolchain/aarch32/gcc-linaro-arm-eabi-6.2.1/bin:$(TOPDIR)/toolchain/aarch32/gcc-arm-linux-gnueabi-8.3/bin:$(TOPDIR)/toolchain/oe/linux-x64/gcc-11.3.0-poky/sysroots/x86_64-pokysdk-linux/usr/bin/arm-pokymllib32-linux-gnueabi"
+CONFIG_TOOLCHAIN_PATH="$(TOPDIR)/toolchain/aarch64/gcc-arm-aarch64-linux-gnu-8.3/bin:$(TOPDIR)/toolchain/aarch32/gcc-linaro-arm-eabi-6.2.1/bin:$(TOPDIR)/toolchain/aarch32/gcc-arm-linux-gnueabi-8.3/bin:$(TOPDIR)/toolchain/oe/linux-x64/gcc-11.3.0-poky/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-pokymllib32-linux"
 CONFIG_TOOLCHAIN_TA="arm-eabi-"
 CONFIG_TOOLCHAIN_BSP="aarch64-linux-gnu-"
-CONFIG_TOOLCHAIN_APPLICATION="arm-pokymllib32-linux-gnueabi-"
+CONFIG_TOOLCHAIN_APPLICATION="aarch64-pokymllib32-linux-"
 CONFIG_TOOLCHAIN_APPLICATION_PATH=""
-CONFIG_TOOLCHAIN_APPLICATION_CC="arm-pokymllib32-linux-gnueabi-gcc"
+CONFIG_TOOLCHAIN_APPLICATION_CC="aarch64-pokymllib32-linux-gcc"
 CONFIG_LINUX_CROSS_COMPILE="aarch64-linux-gnu-"
 CONFIG_LINUX_CROSS_COMPILE_PATH="aarch64/gcc-arm-aarch64-linux-gnu-8.3"
 CONFIG_LINUX_CROSS_COMPILE_CC="aarch64-linux-gnu-gcc"
@@ -171,8 +171,8 @@ CONFIG_SM_ADCBTN=y
 CONFIG_UBOOT=y
 CONFIG_UBOOT_SRC_PATH="u-boot_2019_10"
 CONFIG_UBOOT_ARCH="arm"
-CONFIG_UBOOT_DEFCONFIG="platypus_suboot_defconfig"
-CONFIG_UBOOT_DTS="platypus-rdk"
+CONFIG_UBOOT_DEFCONFIG="platypus_usb_suboot_defconfig"
+CONFIG_UBOOT_DTS="platypus-rdk-usb-suboot"
 CONFIG_UBOOT_REL_PATH="release/uboot"
 # end of Boot
 
@@ -185,6 +185,7 @@ CONFIG_UBOOT_REL_PATH="release/uboot"
 #
 CONFIG_TEE=y
 CONFIG_TZK_MEM_LAYOUT="stb_2g_cma_iommu"
+CONFIG_TZK_SUPPORTED_MEM_LAYOUT="stb_2g_cma_iommu stb_4g_cma_iommu"
 CONFIG_TZK_MZONE_ENABLE=y
 CONFIG_TZK_REGFW_ENABLE=y
 # CONFIG_TZK_PRELOAD_TA is not set
