@@ -193,7 +193,6 @@ CONFIG_TEE_CLIENT_REL_PATH="tee/client"
 CONFIG_OPTEE=y
 # CONFIG_OPTEE_SAMPLE is not set
 # CONFIG_OPTEE_TEST is not set
-# CONFIG_MIPI_DSI_TA is not set
 # end of TEE
 
 CONFIG_TEE_DEV=y

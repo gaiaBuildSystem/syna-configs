@@ -1,13 +1,10 @@
-
 #
 # Build Configuration
 #
-
-#
 # Give a Description for VSSDK Configuration
 #
-CONFIG_DESCRIPTION="SL1620 A0 Yocto Poky Kirkstone for RDK (aarch64 userspace)"
-CONFIG_PRODUCT_NAME="sl1620_poky_aarch64_rdk"
+CONFIG_DESCRIPTION="SL1620 USB Boot Yocto Poky for RDK (aarch64 userspace)"
+CONFIG_PRODUCT_NAME="sl1620_usb_poky_aarch64_rdk"
 CONFIG_BOARD_NAME="SL1620 A0 RDK"
 CONFIG_PRODUCT_IP_LIST="noip"
 CONFIG_PRODUCT_IP_MAPPING_LIST=""
@@ -18,9 +15,9 @@ CONFIG_PRODUCT_IP_MAPPING_LIST=""
 # Target Options
 #
 # CONFIG_BERLIN_DOLPHIN_Z1 is not set
-# CONFIG_BERLIN_PLATYPUS_A0 is not set
-# CONFIG_BERLIN_DOLPHIN_A0 is not set
 CONFIG_BERLIN_MYNA2_A0=y
+# CONFIG_BERLIN_DOLPHIN_A0 is not set
+# CONFIG_BERLIN_MYNA2_A0 is not set
 # CONFIG_ANDROID_OS is not set
 CONFIG_LINUX_OS=y
 # CONFIG_JTAG_ENABLE is not set
@@ -32,15 +29,15 @@ CONFIG_LINUX_OS=y
 CONFIG_RUNTIME_LINUX_BASELINE_BUILDROOT=y
 # CONFIG_RUNTIME_LINUX_BASELINE_BUILDROOT64 is not set
 # CONFIG_RUNTIME_RDK is not set
-# CONFIG_RUNTIME_OE64 is not set
+#CONFIG_RUNTIME_OE64=y
 # CONFIG_RUNTIME_OE is not set
-CONFIG_SYSROOT=y
-CONFIG_RUNTIME_FILESYSTEMS="ramdisk(xz),system(ext4)"
+ CONFIG_SYSROOT=y
+ CONFIG_RUNTIME_FILESYSTEMS="ramdisk(xz),system(ext4)"
 # end of Sysroot Filesystem Configuration
 
-CONFIG_IMAGE_EMMC=y
+# CONFIG_IMAGE_EMMC is not set
 # CONFIG_IMAGE_NAND is not set
-# CONFIG_IMAGE_USBBOOT is not set
+CONFIG_IMAGE_USBBOOT=y
 # CONFIG_PREBOOT_BOOTFLOW_NR is not set
 CONFIG_PREBOOT_BOOTFLOW_AB=y
 
@@ -73,7 +70,7 @@ CONFIG_SYNA_SDK_OUT_ROOTFS="system"
 # Toolchain Configuration
 #
 CONFIG_TOOLCHAIN=y
-CONFIG_TOOLCHAIN_PATH="$(TOPDIR)/build/tools/lib/ccache:$(TOPDIR)/toolchain/aarch64/gcc-arm-aarch64-linux-gnu-8.3/bin:$(TOPDIR)/toolchain/aarch32/gcc-linaro-arm-eabi-6.2.1/bin:$(TOPDIR)/toolchain/aarch32/gcc-arm-linux-gnueabi-8.3/bin:$(TOPDIR)/toolchain/oe/linux-x64/gcc-11.3.0-poky/sysroots/x86_64-pokysdk-linux/usr/bin/arm-pokymllib32-linux-gnueabi"
+CONFIG_TOOLCHAIN_PATH="$(TOPDIR)/toolchain/aarch64/gcc-arm-aarch64-linux-gnu-8.3/bin:$(TOPDIR)/toolchain/aarch32/gcc-linaro-arm-eabi-6.2.1/bin:$(TOPDIR)/toolchain/aarch32/gcc-arm-linux-gnueabi-8.3/bin:$(TOPDIR)/toolchain/oe/linux-x64/gcc-11.3.0-poky/sysroots/x86_64-pokysdk-linux/usr/bin/aarch64-pokymllib32-linux"
 CONFIG_TOOLCHAIN_TA="arm-eabi-"
 CONFIG_TOOLCHAIN_BSP="aarch64-linux-gnu-"
 CONFIG_TOOLCHAIN_APPLICATION="aarch64-pokymllib32-linux-"
@@ -135,17 +132,16 @@ CONFIG_UBOOT_SUBOOT=y
 
 #
 # Bootloader Configuration
-#
-# CONFIG_BL_PRELOAD_TA is not set
-CONFIG_BL_FASTLOGO=y
+
 # CONFIG_BL_SYSTEM_MANAGER is not set
+
 # end of Bootloader Configuration
 
 CONFIG_UBOOT=y
 CONFIG_UBOOT_SRC_PATH="u-boot_2019_10"
 CONFIG_UBOOT_ARCH="arm"
-CONFIG_UBOOT_DEFCONFIG="myna2_suboot_defconfig"
-CONFIG_UBOOT_DTS="myna2-rdk"
+CONFIG_UBOOT_DEFCONFIG="myna2_usb_suboot_defconfig"
+CONFIG_UBOOT_DTS="myna2-rdk-usb-suboot"
 CONFIG_UBOOT_REL_PATH="release/uboot"
 # end of Boot
 
@@ -178,7 +174,8 @@ CONFIG_TEE_DEV_TEEI="GPD11_TZK530"
 #
 # DRM Configuration
 #
-# CONFIG_KEYMASTER is not set
+#CONFIG_DRM_COMMON=y
+#CONFIG_KEYMASTER=y
 # CONFIG_GTVCA is not set
 # CONFIG_GTVCALITE is not set
 # CONFIG_GTVCALITE_TEST is not set
@@ -189,11 +186,13 @@ CONFIG_TEE_DEV_TEEI="GPD11_TZK530"
 # CONFIG_KM_TEST is not set
 # CONFIG_LOAD_HDCP is not set
 # CONFIG_FACTORY_UTIL is not set
-# CONFIG_OEM_COMMAND is not set
+#CONFIG_OEM_COMMAND=y
 # CONFIG_DRM_GENCRYPTO_TEST is not set
 # end of DRM Configuration
 
-# CONFIG_AMPSDK is not set
+#CONFIG_AMPSDK=y
+#
+
 CONFIG_TA_ENC=y
 CONFIG_TA_REL_PATH="ta_enc"
 CONFIG_TA_IMAGE_PATH="ta/enc"
@@ -242,8 +241,13 @@ CONFIG_DRIVERS=y
 # Application Configuration
 #
 # CONFIG_POWERMANAGED is not set
+# CONFIG_APP_GPIO is not set
+# CONFIG_APP_SMBOX is not set
+# CONFIG_TEST_STANDBY is not set
 # CONFIG_TEST_SPI is not set
+# CONFIG_WATCHDOGD is not set
 # CONFIG_VOICECAPTURE is not set
+# CONFIG_LIBSYNAV4L2 is not set
 # CONFIG_V4L2_CODEC is not set
 # CONFIG_OTA_API is not set
 # CONFIG_TEST_OTA is not set
@@ -286,7 +290,7 @@ CONFIG_TA_BUILD_PATH="ta/intermediate"
 # CONFIG_TA_CPPCHECK is not set
 # CONFIG_TA_CALC is not set
 # CONFIG_TA_GFX_IMG is not set
-# CONFIG_TA_GFX_IMG_LINUX is not set
+CONFIG_TA_GFX_IMG_LINUX=y
 # CONFIG_TA_CAF is not set
 CONFIG_DRM_COMMON_TA=y
 CONFIG_GENCRYPTO=y
