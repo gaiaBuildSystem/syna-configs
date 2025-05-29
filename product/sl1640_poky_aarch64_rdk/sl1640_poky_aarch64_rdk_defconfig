@@ -183,7 +183,7 @@ CONFIG_UBOOT_REL_PATH="release/uboot"
 #
 CONFIG_TEE=y
 CONFIG_TZK_MEM_LAYOUT="stb_2g_cma_iommu"
-CONFIG_TZK_SUPPORTED_MEM_LAYOUT="stb_2g_cma_iommu stb_4g_cma_iommu"
+CONFIG_TZK_SUPPORTED_MEM_LAYOUT="stb_2g_cma_iommu stb_3g_cma_iommu stb_4g_cma_iommu"
 CONFIG_TZK_MZONE_ENABLE=y
 CONFIG_TZK_REGFW_ENABLE=y
 # CONFIG_TZK_PRELOAD_TA is not set
